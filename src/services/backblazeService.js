@@ -2,11 +2,33 @@ import axios from 'axios';
 
 class BackblazeService {
   constructor() {
+    // Comprobamos si estamos en GitHub Pages
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    
+    // Si estamos en GitHub Pages, usamos un modo de demostración
+    this.isDemo = isGitHubPages;
+    
+    // API URL normal para entorno de desarrollo
     this.apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+    
+    // Información del bucket para modo de demostración
+    this.demoBucket = {
+      id: 'd68f1a77ef495d86915d061f',
+      name: 'Gracia_y_Vida'
+    };
   }
 
   async initialize() {
     try {
+      if (this.isDemo) {
+        return {
+          success: true,
+          message: 'Modo demostración activo',
+          bucketId: this.demoBucket.id,
+          bucketName: this.demoBucket.name
+        };
+      }
+      
       // Verificar conexión con el servidor proxy
       const response = await axios.get(`${this.apiUrl}/status`);
       return response.data;
@@ -18,6 +40,17 @@ class BackblazeService {
 
   async uploadFile(file, path) {
     try {
+      if (this.isDemo) {
+        console.log(`[DEMO] Simulando subida del archivo: ${path}`);
+        return {
+          success: true,
+          message: 'Archivo simulado subido correctamente',
+          fileName: file.name || path.split('/').pop(),
+          fileId: 'demo-file-id',
+          filePath: path
+        };
+      }
+      
       // Normalizar la ruta (eliminar la barra inicial si existe)
       const normalizedPath = path.startsWith('/') ? path.substring(1) : path;
       
@@ -45,6 +78,11 @@ class BackblazeService {
 
   async downloadFile(path) {
     try {
+      if (this.isDemo) {
+        console.log(`[DEMO] Simulando descarga del archivo: ${path}`);
+        return new Blob(['Contenido de demostración para ' + path], { type: 'text/plain' });
+      }
+      
       // Normalizar la ruta
       const normalizedPath = path.startsWith('/') ? path.substring(1) : path;
       
@@ -65,6 +103,38 @@ class BackblazeService {
 
   async listFiles(prefix = '') {
     try {
+      if (this.isDemo) {
+        console.log(`[DEMO] Simulando listado de archivos en: ${prefix}`);
+        
+        // Devolver datos de demostración
+        return [
+          {
+            name: 'Documentos',
+            path: '/Documentos',
+            type: 'folder',
+            isFolder: true
+          },
+          {
+            name: 'Imágenes',
+            path: '/Imágenes',
+            type: 'folder',
+            isFolder: true
+          },
+          {
+            name: 'Readme.txt',
+            path: '/Readme.txt',
+            type: 'text/plain',
+            size: 1024
+          },
+          {
+            name: 'Bienvenido.pdf',
+            path: '/Bienvenido.pdf',
+            type: 'application/pdf',
+            size: 2048
+          }
+        ];
+      }
+      
       // Solicitar lista de archivos al servidor proxy
       const response = await axios.get(`${this.apiUrl}/files`, {
         params: { prefix }
@@ -79,6 +149,15 @@ class BackblazeService {
 
   async deleteFile(path) {
     try {
+      if (this.isDemo) {
+        console.log(`[DEMO] Simulando eliminación del archivo: ${path}`);
+        return {
+          success: true,
+          message: 'Archivo simulado eliminado correctamente',
+          filePath: path
+        };
+      }
+      
       // Normalizar la ruta
       const normalizedPath = path.startsWith('/') ? path.substring(1) : path;
       
@@ -94,6 +173,15 @@ class BackblazeService {
 
   async testConnection() {
     try {
+      if (this.isDemo) {
+        return {
+          success: true,
+          message: 'Modo demostración activo',
+          bucketId: this.demoBucket.id,
+          bucketName: this.demoBucket.name
+        };
+      }
+      
       // Verificar conexión con el servidor proxy
       const response = await axios.get(`${this.apiUrl}/status`);
       
