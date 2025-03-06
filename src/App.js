@@ -56,8 +56,8 @@ function App() {
           </div>
         )}
         <Routes>
-          {/* Ruta principal redirige a dashboard */}
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          {/* Ruta principal redirige a dashboard, sin usar el atributo "replace" para evitar problemas con HashRouter */}
+          <Route path="/" element={<Navigate to="/dashboard" />} />
           
           {/* Rutas protegidas */}
           <Route element={<PrivateRoute />}>

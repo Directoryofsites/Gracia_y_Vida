@@ -7,5 +7,6 @@ export default function PrivateRoute() {
   
   // Verificar si el usuario está autenticado
   // Si no, redirigir a la página de login
-  return currentUser ? <Outlet /> : <Navigate to="/login" replace />;
+  // Quitamos el atributo "replace" para evitar problemas con HashRouter
+  return currentUser ? <Outlet /> : <Navigate to="/login" />;
 }
