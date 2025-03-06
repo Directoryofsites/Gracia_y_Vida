@@ -1,6 +1,6 @@
 import BackblazeTest from './components/BackblazeTest';
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
 
@@ -20,6 +20,11 @@ import './App.css';
 
 function App() {
   const [backblazeStatus, setBackblazeStatus] = React.useState(null);
+  
+  // Determinar si estamos en GitHub Pages
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  // Usar el router apropiado
+  const Router = isGitHubPages ? HashRouter : BrowserRouter;
 
   React.useEffect(() => {
     // Probar la conexión con Backblaze al iniciar

@@ -1,10 +1,6 @@
 import backblazeService from '../services/backblazeService';
 
 // Función para probar la conexión con el servicio de almacenamiento
-
-
-
-
 const testStorageConnection = async () => {
   try {
     console.log('Iniciando prueba de conexión con Backblaze B2...');
@@ -14,10 +10,14 @@ const testStorageConnection = async () => {
     
     console.log('Resultado de la prueba:', connectionResult);
     
+    // Asegurarse de que filesCount tenga un valor
+    const filesCount = connectionResult.files ? connectionResult.files.length : 
+                      (connectionResult.filesCount || 'No disponible');
+    
     return {
       success: connectionResult.success,
       message: connectionResult.success 
-        ? `Conexión exitosa. Bucket: ${connectionResult.bucketId}. Archivos: ${connectionResult.filesCount}` 
+        ? `Conexión exitosa. Bucket: ${connectionResult.bucketId}. Archivos: ${filesCount}` 
         : `Error de conexión: ${connectionResult.error}`,
       files: connectionResult.success ? connectionResult.files : null
     };
