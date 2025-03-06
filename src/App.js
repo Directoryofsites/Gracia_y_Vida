@@ -25,6 +25,9 @@ function App() {
   const isGitHubPages = window.location.hostname.includes('github.io');
   // Usar el router apropiado
   const Router = isGitHubPages ? HashRouter : BrowserRouter;
+  
+  // Configurar la base URL para GitHub Pages
+  const basename = isGitHubPages ? '/Gracia_y_Vida' : '';
 
   React.useEffect(() => {
     // Probar la conexión con Backblaze al iniciar
@@ -37,9 +40,12 @@ function App() {
     testConnection();
   }, []);
 
+  // En producción, HashRouter debería usar un basename vacío ya que el # maneja la navegación
+  const routerProps = isGitHubPages ? {} : { basename };
+
   return (
     <AuthProvider>
-      <Router>
+      <Router {...routerProps}>
         {backblazeStatus && (
           <div style={{ 
             background: backblazeStatus.success ? '#4CAF50' : '#f44336', 
@@ -56,7 +62,7 @@ function App() {
           </div>
         )}
         <Routes>
-          {/* Ruta principal redirige a dashboard, sin usar el atributo "replace" para evitar problemas con HashRouter */}
+          {/* Ruta principal redirige a dashboard */}
           <Route path="/" element={<Navigate to="/dashboard" />} />
           
           {/* Rutas protegidas */}
