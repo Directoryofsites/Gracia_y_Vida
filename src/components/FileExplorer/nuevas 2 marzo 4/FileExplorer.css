@@ -1,0 +1,931 @@
+.file-explorer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+
+
+.file-explorer-header {
+  background-color: transparent; /* Cambiado de #2962ff a transparent */
+  color: #333; /* Cambiado de white a #333 */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e0e0e0; /* Añadida línea divisoria */
+}
+
+
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.header-actions a {
+  color: #333; /* Cambiado de white a #333 */
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.header-actions a:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Cambiado para que sea visible en fondo claro */
+}
+
+.file-explorer-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #e0e0e0;
+  padding: 10px 0;
+  overflow-y: auto;
+}
+
+.sidebar-section {
+  margin-bottom: 20px;
+}
+
+.sidebar-title {
+  padding: 10px 20px;
+  font-weight: 600;
+  color: #666;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar-item:hover {
+  background-color: #e8f0fe;
+}
+
+.sidebar-item.active {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+}
+
+.sidebar-item-icon {
+  margin-right: 10px;
+  color: #5f6368;
+  width: 20px;
+}
+
+.storage-section {
+  padding: 10px 20px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: auto;
+}
+
+.storage-bar {
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.storage-bar-fill {
+  height: 100%;
+  background-color: #2962ff;
+}
+
+.storage-text {
+  color: #5f6368;
+  font-size: 12px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.navigation-bar {
+  display: flex;
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #5f6368;
+}
+
+.nav-button:hover {
+  background-color: #e8e8e8;
+}
+
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.path-display {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+
+.search-bar {
+  margin-left: 15px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 250px;
+}
+
+.content-area {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 1rem;
+  color: #5f6368;
+  margin-bottom: 15px;
+}
+
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.folder-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.folder-item:hover {
+  background-color: #f5f5f5;
+}
+
+.folder-icon {
+  color: #ffd54f;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+
+.folder-name {
+  text-align: center;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  color: #333; /* Añadido para asegurar que el texto sea visible */
+  margin-top: 5px; /* Añadido para separar del icono */
+  word-break: break-word; /* Permite que palabras largas se rompan */
+  max-width: 100px; /* Limita el ancho para que coincida con el contenedor */
+}
+
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.file-table th {
+  text-align: left;
+  padding: 10px 15px;
+  color: #5f6368;
+  font-weight: 500;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.file-table td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.file-row:hover {
+  background-color: #f5f5f5;
+}
+
+.file-name-cell {
+  display: flex;
+  align-items: center;
+}
+
+.file-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.file-icon.pdf {
+  color: #e53935;
+}
+
+.file-icon.doc {
+  color: #1565c0;
+}
+
+.file-icon.image {
+  color: #43a047;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 10px;
+}
+
+
+
+
+.action-link:hover {
+  background-color: rgba(26, 115, 232, 0.1);
+  color: #0d47a1;
+}
+
+
+.action-link:hover {
+  text-decoration: underline;
+}
+
+
+
+.status-bar {
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  color: #5f6368;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.copyright {
+  text-align: center;
+}
+/* Estilos para la información de la empresa */
+.company-info {
+  display: flex;
+  align-items: center;
+}
+
+.company-logo {
+  margin-right: 15px;
+}
+
+.company-logo img {
+  height: 80px;
+  max-width: 240px;
+  width: auto;
+  object-fit: contain;
+}
+
+.company-text {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.company-name {
+  font-size: 2rem; /* Cambiado de 1.3rem a 2rem para hacerlo más grande */
+  font-weight: bold;
+  color: #333; /* Cambiado de white a #333 */
+}
+
+.company-description {
+  font-size: 1.1rem; /* Ligeramente más grande que el original 0.9rem */
+  color: #666; /* Cambiado de opacity 0.9 a un color concreto */
+  margin-top: 2px;
+}
+.edit-form-container {
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+  color: #333;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  color: #333; /* Cambiado de white a #333 */
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.edit-button:hover {
+  opacity: 0.8;
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Cuando se está editando, queremos que ocupe todo el ancho */
+.file-explorer-header:has(.edit-form-container) .header-content {
+  display: block;
+}
+
+
+
+
+.folder-actions {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px;
+  text-align: center;
+  z-index: 10; /* Añadido para asegurar que esté por encima */
+}
+
+.folder-item {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: transparent; /* Cambiado de negro a transparente */
+  border-radius: 8px;
+}
+
+.folder-item:hover {
+  background-color: #f5f5f5;
+}
+
+.folder-item:hover .folder-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.folder-action-link {
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+.folder-action-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.sidebar-item-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.sidebar-item-actions {
+  display: none;
+  position: absolute;
+  right: 10px;
+}
+
+.sidebar-item-container:hover .sidebar-item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.sidebar-action {
+  cursor: pointer;
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.sidebar-action:hover {
+  opacity: 1;
+}
+
+.sidebar-add-item {
+  padding: 8px 20px;
+  color: #0066cc;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sidebar-add-item:hover {
+  background-color: #f0f0f0;
+}
+
+.folder-actions {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px;
+  text-align: center;
+}
+
+.folder-item {
+  position: relative;
+}
+
+.folder-item:hover .folder-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.folder-action-link {
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+.folder-action-link:hover {
+  text-decoration: underline;
+}
+
+
+
+.action-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+.sidebar-item-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar-item:hover {
+  background-color: #e8f0fe;
+}
+
+.sidebar-item-actions {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar-item-container:hover .sidebar-item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.sidebar-action {
+  cursor: pointer;
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.sidebar-action:hover {
+  opacity: 1;
+}
+
+.sidebar-add-item {
+  padding: 8px 20px;
+  color: #0066cc;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sidebar-add-item:hover {
+  background-color: #f0f0f0;
+}
+
+.folder-actions {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px;
+  text-align: center;
+}
+
+.folder-item {
+  position: relative;
+}
+
+.folder-item:hover .folder-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.folder-action-link {
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+.folder-action-link:hover {
+  text-decoration: underline;
+}
+
+.action-link {
+  cursor: pointer;
+  margin: 0 5px;
+  color: #1a73e8;
+}
+
+.action-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+/* Estilos para el botón de YouTube */
+.action-link-youtube {
+  cursor: pointer;
+  margin-right: 8px;
+  color: #ff0000; /* Color rojo de YouTube */
+  display: inline-flex;
+  align-items: center;
+}
+
+.action-link-youtube:hover {
+  text-decoration: underline;
+}
+
+.youtube-icon {
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+/* Estilos para el formulario de URL de YouTube */
+.youtube-url-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  width: 400px;
+  max-width: 90%;
+}
+
+.youtube-url-form h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.youtube-url-form input {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.youtube-url-form .form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.youtube-url-form button {
+  padding: 8px 16px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.youtube-url-form button.save {
+  background-color: #0066cc;
+  color: white;
+}
+
+.youtube-url-form button.cancel {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+/* Fondo oscuro para el modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+
+/* Nuevos estilos para la visualización de archivos */
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.file-name-row {
+  background-color: #f8f9fa;
+  width: 100%;
+}
+
+
+.file-name-cell {
+  padding: 15px 5px 5px 15px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  width: 88%; /* Aumentamos significativamente el espacio para el nombre */
+  max-width: 88%; /* Mismo que el ancho */
+}
+
+.file-actions-cell {
+  width: 12%; /* Minimizamos el ancho para los botones */
+  white-space: nowrap;
+  text-align: right;
+  padding-left: 0;
+  padding-right: 5px;
+}
+
+.file-name-text {
+  word-break: break-word;
+  flex: 1;
+  white-space: normal; /* Permite saltos de línea */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  width: calc(100% - 30px); /* Restamos el espacio del icono */
+  font-size: 1.0rem;
+  line-height: 1.2;
+  max-height: none; /* Eliminamos la restricción de altura */
+  padding-right: 10px; /* Añadimos un poco de espacio a la derecha */
+}
+
+
+
+.file-spacer-row td {
+  height: 5px;
+  padding: 0;
+}
+
+.file-details-row td {
+  padding: 5px 15px 15px 15px;
+  border-bottom: none;
+}
+
+.file-detail-cell {
+  font-size: 0.9rem;
+  color: #555;
+  vertical-align: top;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #666;
+  margin-right: 5px;
+}
+
+
+.action-links-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  margin-top: 5px;
+  justify-content: flex-end;
+  min-width: fit-content;
+}
+
+
+.action-link {
+  cursor: pointer;
+  margin: 0 1px;
+  color: #1a73e8;
+  font-size: 0.7rem;
+  padding: 2px 4px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+
+.action-link:hover {
+  background-color: rgba(26, 115, 232, 0.1);
+  text-decoration: none; /* Cambiamos al estilo de resaltado en lugar de subrayado */
+}
+
+
+.file-separator-row td {
+  border-bottom: 1px solid #e0e0e0;
+  height: 10px;
+  padding: 0;
+}
+
+/* Ajustar estilos existentes */
+.actions-cell {
+  width: 30%;
+}
+
+
+
+.login-button, .logout-button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.login-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.login-button:hover {
+  background-color: #45a049;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+.welcome-text {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.login-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  max-width: 90%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-help {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.login-submit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+}
+
+
+/* Estilos adicionales para el sistema de usuarios */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Estas clases ya están definidas pero las modificamos ligeramente para una mejor integración */
+.login-form h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.login-form div {
+  margin-bottom: 15px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Añadimos algunos estilos específicos para la interfaz de usuario condicionada */
+.admin-only-placeholder {
+  padding: 10px;
+  text-align: center;
+  color: #666;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 0.9rem;
+}
