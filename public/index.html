@@ -25,6 +25,22 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    
+    <!-- Script para manejar redirecciones en GitHub Pages -->
+    <script type="text/javascript">
+      // Script de redirección para GitHub Pages
+      (function() {
+        // No ejecutar en desarrollo local
+        if (!window.location.hostname.includes('github.io')) return;
+        
+        // Redirigir a la página principal con hash
+        var pathSegments = window.location.pathname.split('/');
+        if (pathSegments.length > 2) {
+          var path = pathSegments.slice(2).join('/');
+          window.location.href = window.location.origin + '/' + pathSegments[1] + '/#/' + path;
+        }
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
