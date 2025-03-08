@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Gracia_y_Vida/static/css/main.1e013af9.css",
-    "main.js": "/Gracia_y_Vida/static/js/main.b88a786f.js",
+    "main.js": "/Gracia_y_Vida/static/js/main.d92c3fa7.js",
     "index.html": "/Gracia_y_Vida/index.html",
     "main.1e013af9.css.map": "/Gracia_y_Vida/static/css/main.1e013af9.css.map",
-    "main.b88a786f.js.map": "/Gracia_y_Vida/static/js/main.b88a786f.js.map"
+    "main.d92c3fa7.js.map": "/Gracia_y_Vida/static/js/main.d92c3fa7.js.map"
   },
   "entrypoints": [
     "static/css/main.1e013af9.css",
-    "static/js/main.b88a786f.js"
+    "static/js/main.d92c3fa7.js"
   ]
 }
