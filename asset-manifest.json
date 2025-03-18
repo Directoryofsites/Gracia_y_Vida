@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Gracia_y_Vida/static/css/main.c314deff.css",
-    "main.js": "/Gracia_y_Vida/static/js/main.ab790d1f.js",
-    "static/js/453.99968bc8.chunk.js": "/Gracia_y_Vida/static/js/453.99968bc8.chunk.js",
+    "main.js": "/Gracia_y_Vida/static/js/main.818cdc6a.js",
+    "static/js/453.4e7de0c0.chunk.js": "/Gracia_y_Vida/static/js/453.4e7de0c0.chunk.js",
     "index.html": "/Gracia_y_Vida/index.html",
     "main.c314deff.css.map": "/Gracia_y_Vida/static/css/main.c314deff.css.map",
-    "main.ab790d1f.js.map": "/Gracia_y_Vida/static/js/main.ab790d1f.js.map",
-    "453.99968bc8.chunk.js.map": "/Gracia_y_Vida/static/js/453.99968bc8.chunk.js.map"
+    "main.818cdc6a.js.map": "/Gracia_y_Vida/static/js/main.818cdc6a.js.map",
+    "453.4e7de0c0.chunk.js.map": "/Gracia_y_Vida/static/js/453.4e7de0c0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c314deff.css",
-    "static/js/main.ab790d1f.js"
+    "static/js/main.818cdc6a.js"
   ]
 }
