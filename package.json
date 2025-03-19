@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Directoryofsites/contenedor.git"
+    "url": "git+https://github.com/Directoryofsites/Gracia_y_Vida.git"
   },
   "keywords": [
     "explorador",
@@ -20,9 +20,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Directoryofsites/contenedor/issues"
+    "url": "https://github.com/Directoryofsites/Gracia_y_Vida/issues"
   },
-  "homepage": "https://directoryofsites.github.io/contenedor",
+  "homepage": "https://directoryofsites.github.io/Gracia_y_Vida",
   "devDependencies": {
     "gh-pages": "^6.1.1"
   }
